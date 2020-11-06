@@ -1,10 +1,10 @@
 pip install fastapi
 
 pip install uvicorn
+pip install python-multipart
 
 
-uvicorn main:app --reload
-
+python -m uvicorn main:app --reload
 
 
 To program python variable loading queues use app get directory code:

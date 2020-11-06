@@ -20,6 +20,8 @@ origins = [
     "http://localhost",
     "http://localhost:4111",
     "http://localhost:8000",
+    "http://microhawaii.com",
+    "upload.microhawaii.com",
     "127.0.0.1:59152",
 ]
 
@@ -31,10 +33,19 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
 @app.post("/uploadfiles/")
+
 async def create_files(files: bytes = File(...)):
-    out_file = open("files/1.jpg", "wb") # open for [w]riting as [b]inary
+    with open('C:/data/sample.txt', 'r', encoding='utf-8') as g:
+        data=g.readlines()
+
+    for line in data:
+        counter = int(line)
+        with open('C:/data/sample.txt', 'w') as f:
+            counter = counter + 1
+            f.write(str(counter))
+
+    out_file = open("files/" + str(counter) + ".jpg", "wb") # open for [w]riting as [b]inary
     out_file.write( bytes([(file) for file in files]))
     out_file.close()
 
